@@ -3,7 +3,7 @@ c++ circuit breaker
 
 
 cppbreaker implements the Circuit Breaker pattern in C++.   
-Convert from [sony/gobreaker](https://github.com/sony/gobreaker) to C++.
+Convert [sony/gobreaker](https://github.com/sony/gobreaker) from go to C++.
 
 
 ## Usage
@@ -109,4 +109,18 @@ if (code == cppbreaker::ResultCode::ResultCodeErrOpenState)
 }
 ```
 
+or
+
+```
+std::tuple<Object, int> execution_function()
+{
+    Object object;
+    rpc::Status ret = rpc_client()->GetObject(&object);
+    return std::make_tuple(object, ret.Ok() ? 0 : 1);
+}
+
+auto rets = cb.Execut<Object>(execution_function);
+Object object = std::get<0>(rets);
+int ret_code = std::get<1>(rets);
+```
 

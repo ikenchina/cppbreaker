@@ -2,6 +2,12 @@
 #include <iostream>
 #include <thread>
 
+
+std::tuple<std::string, int> execution_demo()
+{
+    return std::make_tuple("hello demo", 1);
+}
+
 int main(int argc, char* argv[])
 {
     // mock rpc call
@@ -66,4 +72,7 @@ int main(int argc, char* argv[])
         
         std::cout << "circuit breaker state : " << cb.StateString(cb.GetState()) << std::endl;
     }
+
+    auto rets = cb.Execute<std::string>(execution_demo);
+    std::cout << std::get<0>(rets) << "  " << std::get<1>(rets) << std::endl;
 }
