@@ -24,9 +24,9 @@ int main(int argc, char* argv[])
 
     // if the number of requests is greater 10 and 60% requests are failed, change circutbreaker to open state
     st.ready_to_trip = [](const cppbreaker::Counts& counts)->bool {
-        auto numReqs = counts.requests;
-        auto failureRatio = double(counts.total_failures) / double(numReqs);
-        return numReqs >= 10 && failureRatio >= 0.6;
+        auto num_reqs = counts.requests;
+        auto failure_ratio = double(counts.total_failures) / double(num_reqs);
+        return num_reqs >= 10 && failure_ratio >= 0.6;
     };
 
     st.on_state_change = [](const std::string& name, cppbreaker::State from, cppbreaker::State to) {
