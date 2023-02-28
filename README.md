@@ -1,8 +1,8 @@
-c++ circuit breaker
+C++ circuit breaker
 =========
 
 
-cppbreaker implements the Circuit Breaker pattern in C++.   
+Cppbreaker implements the Circuit Breaker pattern in C++.   
 
 
 ## Usage
